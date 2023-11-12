@@ -19,3 +19,4 @@ let isActive: string | number
 //regex
 let re: RegExp = /\w+/g
 
+console.log("sj");
