@@ -1,33 +1,25 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+
+import Heading from "./components/Heading"
+import { Section } from "./components/Section"
+import Counter from "./components/Counter"
+
+import { useState } from "react"
+
+
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [count, setCount] = useState<number>(1)
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+   <Heading title="Hello world!!"/>
+   <Section >
+    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae vel est sequi veritatis debitis laborum repellendus architecto voluptas consequuntur quasi? Maiores, minima cumque? Impedit at officia ex delectus eius, illum illo aspernatur, recusandae, eaque mollitia ipsa magnam nulla suscipit quas quidem iure molestiae ea rerum necessitatibus! Repellat, consequatur debitis! Nihil corporis, similique recusandae vitae iure voluptatem sint reprehenderit magni officiis fuga incidunt placeat eos? Omnis dolorum nam placeat ex, neque sunt aliquid aliquam repellendus ipsa distinctio laborum perspiciatis eveniet eius. Tenetur rem sed est doloribus magnam aut voluptate, quasi praesentium, cum quae ipsa. Quos et tempora hic quae assumenda pariatur.
+   </Section>
+
+   <Counter setCount={setCount} > Count is {count}</Counter>
+
     </>
   )
 }
