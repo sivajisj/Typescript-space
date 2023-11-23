@@ -6,6 +6,7 @@ function App(){
   return(
     <>
     <Counter >{(num: number | string)=> <>Current Count: {num}</>}</Counter>
+   
     </>
   )
 }
