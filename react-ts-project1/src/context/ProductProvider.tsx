@@ -1,4 +1,4 @@
-import { ReactElement, createContext, useState } from "react"
+import { ReactElement, createContext, useEffect, useState } from "react"
 
 export type ProductType = {
     sku: string,
@@ -6,23 +6,25 @@ export type ProductType = {
     price: number,
 }
 
-const initState: ProductType[] = [
-    {
-        "sku": "item0001",
-        "name": "Widget",
-        "price": 9.99
-    },
-    {
-        "sku": "item0002",
-        "name": "Premium Widget",
-        "price": 19.99
-    },
-    {
-        "sku": "item0003",
-        "name": "Deluxe Widget",
-        "price": 29.99
-    }
-]
+const initState: ProductType[] = []
+
+// const initState: ProductType[] = [
+//     {
+//         "sku": "item0001",
+//         "name": "Widget",
+//         "price": 9.99
+//     },
+//     {
+//         "sku": "item0002",
+//         "name": "Premium Widget",
+//         "price": 19.99
+//     },
+//     {
+//         "sku": "item0003",
+//         "name": "Deluxe Widget",
+//         "price": 29.99
+//     }
+// ]
 
 
 export type UseProductContextType = {
@@ -34,7 +36,7 @@ export type UseProductContextType = {
 const initContextState: UseProductContextType = {products: []}
 
 
-const productsContext = createContext<UseProductContextType>(initContextState)
+const ProductsContext = createContext<UseProductContextType>(initContextState)
 
 
 type ChildrenType = {
@@ -46,11 +48,28 @@ export const ProductsProvider = ({children}: ChildrenType):
        
     const [products, setProducts] = useState<ProductType[]>(initState)
 
+
+    useEffect(() => {
+        const fetchProducts = async (): Promise<ProductType[]> => {
+            const data = await fetch("https://3000-sivajisj-typescriptspac-t3idlm31nrr.ws-us106.gitpod.io/products")
+            .then(res => res.json())
+            .catch(err => {
+                if(err instanceof Error) console.log(err.message);
+                
+            })
+             console.log(data);
+             
+            return data
+        }
+        fetchProducts().then(data => setProducts(data))
+    },[])
     return (
-        <productsContext.Provider value={{products}}>
+        <ProductsContext.Provider value={{products}}>
             {children}
-        </productsContext.Provider>
+        </ProductsContext.Provider>
     )
     
      
 }
+
+export default ProductsContext
