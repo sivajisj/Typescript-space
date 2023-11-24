@@ -110,7 +110,7 @@ const useCartContext = (initCartState: CartStateType) => {
       return REDUCER_ACTION_TYPE 
     },[]);
 
-    const totalItems = state.cart.reduce((acc, item) => {
+    const totalItems = state.cart.reduce((acc: any, item: { qty: any; }): number => {
         return acc + item.qty;
     },0)
 
@@ -118,7 +118,7 @@ const useCartContext = (initCartState: CartStateType) => {
       style: "currency",
       currency: "USD",
       minimumFractionDigits: 2,  
-    } ).format(state.cart.reduce((acc, item) => {
+    } ).format(state.cart.reduce((acc: number, item: { price: number; qty: number; }) => {
         return acc + item.price * item.qty;
     },0)
     )
