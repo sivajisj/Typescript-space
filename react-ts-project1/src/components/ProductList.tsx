@@ -27,6 +27,12 @@ const ProductList = () => {
            )
       })
     }
+
+    const content = (
+      <main className="main main--products" >
+        {pageContent}
+      </main>
+    )
   return (
     <div>ProductList</div>
   )
